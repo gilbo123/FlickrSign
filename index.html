@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<!-- HTML TEMPLATE - -->
+<html ng-app = "photoApp">
+	<head>
+  		<title>My Photo Album</title>
+  		<meta charset="utf-8">
+  		<link rel="stylesheet" href="styles/style.css" type="text/css">
+  		<link rel="stylesheet" href="styles/animate.css" type="text/css">
+  		
+  		<!-- CRYPTO-->
+  		<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+  		
+  		<!-- ANGULAR-->
+  		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  		
+  		<!-- js Files-->
+  		<script src="js/addon/jquery-2.1.1.js" ></script>
+  		<script src="js/control.js" ></script>
+  		<script src="js/model-flickr.js" ></script>
+  		<!-- <script src="js/view.js" ></script> -->
+  		
+  		
+  		<!--FANCYBOX -->
+		
+		<!-- Add fancyBox -->
+		<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+		<script src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+		
+		<!-- Optionally add helpers - button, thumbnail and/or media -->
+		<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+		<script src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+		<script src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+		
+		<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+		<script src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+  		
+ 	</head>
+	<body ng-controller ="PhotoReady">
+		  
+		<!--Header info - title and login button -->	
+		<header>
+		    <div id="header">
+                <h2>My Photo Album
+                    <div id="button" style="float:right">
+                        <button id="loginButton" onclick="controller.loginButtonPressed()" style="float: right">Login</button>
+                    </div>
+                </h2>
+			</div>
+		</header>
+		
+		<div id="mainContent">
+			<div id="splashDiv">
+	    		<!--		<h1>Welcome !</h1>Click button to enter.....<button id="enterBtn">Enter</button> -->
+				
+				<div class="animationItem">
+					<p id="enterBtn" onclick="controller.showPhotos()">Click to Enter</p>
+				</div>
+				
+			</div>
+			
+			<div id="photoArea">
+			
+				<br>
+				<div id="searchDiv">
+					<!--Search bar and button for string -->		
+					Search by keyword: <input id="searchValue" ng-model="searchText">
+					<button id="searchBtn" ng-model="searchText" ng-click="search()">Go</button>
+					<br>
+					<br>
+					<!--Search bar and button for username-->		
+					Search by Username: <input id="userValue" ng-model="userText">
+					<button id="userNameBtn" ng-model="userText" ng-click="userSearch()">Go</button>
+				</div>
+				
+				<div id="backBtn">
+					<button id="back">Go Back</button>
+				</div>
+				
+				<div id="loadingDiv"><img src="images/camera.gif">
+				</div>	
+				
+				<br>
+				<!--Division for photo array -->
+				<div id="photoDiv" ng-repeat="photo in photos">
+                   
+                   <figure class="animated rotateIn"><a id="fancybox" href="{{photo.big}}" title="{{photo.title}} USER: {{photo.owner}}""><img src="{{photo.thumb}}" 
+					alt="{{photo.title}}" rel="gallery123" height="200" width="200"</a><figcaption> {{photo.title}}</figcaption></figure> 
+                
+				</div>
+				
+				<div id="menuDiv">
+					<div id="homeLink" class="menuItem"><img src="images/home.JPG" width="40" height="40"><span class="imgSpace">Home</span>
+					</div>
+
+					<div id="infoLink" class="menuItem"><img src="images/question.JPG" width="40" height="40"><span class="imgSpace"> Info</span>
+					</div>
+					
+					<div id="helpLink" class="menuItem"><img src="images/help.JPG" width="40" height="40"><span class="imgSpace">Help</span>
+					</div>
+					
+					<div id="contactLink" class="menuItem"><img src="images/contact.JPG" width="40" height="40"><span class="imgSpace">Contact</span>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+		<footer>
+			<p>Gilbert Eaton - s2795921</p>
+		</footer>
+		
+		
+	</body>
+</html>
